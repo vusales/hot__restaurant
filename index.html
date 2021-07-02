@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container p-3" style="text-align: center">
+        <div class="p-5" style="background-color: lightgrey;">
+            <div class="p-4">
+                <h1> <i class="fas fa-fire"></i> HOT RESTAURANT</h1>
+                <hr>
+                <h2>We only have 5 tables! Book your seat before they all are gone!</h2>
+                <div class="form-group d-flex align-items-center justify-content-center ">
+                     <a href="./view_table.html">
+                         <button class="wiev_table btn btn-primary" id="wiev_table">Wiev Tables</button>
+                     </a>
+                     <a href="./make_reservation.html" class="ps-2">
+                        <button class="make_reserv btn btn-danger">Make Reservation</button>
+                     </a>
+                </div>
+            </div>
+        </div>
+        <div class="p-1 " style="text-align: left;">
+            <a href="/api/table" id="">API Table Link</a>
+            |
+            <a href="/api/waitlist">API Wait List</a>
+        </div>
+    </div>
+  
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+</body>
+</html>

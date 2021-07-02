@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABLES PAGE</title>
+    <!-- Bootstrap link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container p-3" style="text-align: center">
+        <div class="jumbotron p-3">
+            <div class="p-5" style="background-color: lightgrey;">
+                <h1><i class="fas fa-fire"></i> HOT RESTAURANT</h1>
+                <hr>
+                <h2>Current Reservations and Waiting List</h2>
+                <div class="form-group">
+                    
+                       <a href="./make_reservation.html">
+                        <button class="make_reserv btn btn-danger">Make Reservation</button>
+                       </a>
+                       <a href="./">
+                        <button class="back_home btn btn-light" ><i class="fas fa-home"></i></button>
+                       </a>
+
+                   
+                </div>
+            </div>
+        </div>
+        <div class="p-3 ">
+            <h3 class="p-3" style="background-color: lightgrey;">Current reservation</h3>
+            <table class="table table-bordered border-light" style="text-align: left;" id="newCustomer">
+                
+            </table>
+           
+        </div>
+        <div class="p-3 ">
+            <h3 class="p-3" style="background-color: lightgrey;">Waiting reservation</h3>
+            <table class="table table-bordered border-light" style="text-align: left;" id="waiterUsers">
+                
+            </table> 
+        </div>
+
+        <div class="p-3 " style="text-align: left;">
+          <button class= "btn" id="clearAll" onclick="Clear()" style="outline: none; border: none; padding: 5px 7px; font-weight: 600; background-color: lightgrey;">Clear all</button>
+          |
+          <a href="/api/table">API Table Link</a>
+          |
+          <a href="/api/waitlist">API Wait List</a>
+      </div>
+
+    </div>
+  
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+     
+    <script>
+
+      function Clear(){  
+        confirm(" ARE YOU SURE TO DELETE ALL DATA ??? ") ;
+        if(confirm){
+            $.ajax({
+            method: "DELETE" , 
+            url: "/api/clear",
+            }).done(function(res){
+              console.log(res);
+            });
+            alert("ALL DATA WAS DELETED!!!")
+        }
+     
+      }
+
+      // $("#clearAll").on("click" , function(){
+      // });
+
+      AddTables();
+
+      function AddTables () {
+        $.ajax({
+          method: "GET" ,
+          url: "/api/table" ,
+        }).done(function(res){
+          var number = 0 ;
+        
+          for(let i= 0 ; i< res.length ; i++ ){
+            number++ ; 
+            $("#newCustomer").append(`
+                <thead>
+                  <tr>
+                    <th scope="col">#TABLE ${number}</th>
+                  </tr>
+                </thead>
+                <hr/>
+                <tbody>
+                  <tr>
+                    <td>ID: ${res[i].id}</td>
+                  </tr>
+                  <tr>  
+                    <td>NAME: ${res[i].name}</</td>
+                  </tr>
+                  <tr>
+                    <td>EMAIL: ${res[i].email}</</td>
+                  </tr>
+                  <tr>
+                    <td>PHONE: ${res[i].phone}</</td>
+                  </tr>
+                  
+                </tbody>
+            
+            `);
+          }
+        });
+
+        $.ajax({
+          method: "GET" , 
+          url: "/api/waitlist" 
+        }).done(function(res){
+          var number = 0 ; 
+          for(let i= 0 ; i< res.length ; i++ ){
+            number++ ; 
+            $("#waiterUsers").append(`
+                <thead>
+                  <tr>
+                    <th scope="col">#TABLE ${number}</th>
+                  </tr>
+                </thead>
+                <hr/>
+                <tbody>
+                  <tr>
+                    <td>ID: ${res[i].id}</td>
+                  </tr>
+                  <tr>  
+                    <td>NAME: ${res[i].name}</</td>
+                  </tr>
+                  <tr>
+                    <td>EMAIL: ${res[i].email}</</td>
+                  </tr>
+                  <tr>
+                    <td>PHONE: ${res[i].phone}</</td>
+                  </tr>
+                  
+                </tbody>
+            
+            `);
+
+          }
+
+        })
+      }
+
+    </script>
+</body>
+</html>
